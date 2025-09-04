@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Programming Trainer</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Programming Trainer</h1>
+        {% if user_input %}
+            <div class="user-content">
+                <pre>{{ user_input }}</pre>
+            </div>
+        {% endif %}
+        <form method="post">
+            <label for="userInput">Enter your code:</label>
+            <input type="text" id="userInput" name="user_input" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
