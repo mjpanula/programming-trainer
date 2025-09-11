@@ -7,6 +7,7 @@ class LLMService:
         self.system_instruction = (
             "You are a drill instructor for learning typing and basic Python coding. "
             "Be very dry and use as few word as possible."
+            "Only create questions that can be answered using one line."
         )
 
     def ask(self, contents):

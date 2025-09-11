@@ -18,11 +18,17 @@ class QuestionManager:
             f"The user's answer was:\n{user_input}\n"
             "Provide feedback from the answer. Also, respond with a JSON object on a new line: "
             "{'acceptable': true/false} indicating if the answer is correct."
+            "Make sure that the JSON is on a separate line!!"
         )
         response_text = self.llm.ask(prompt)
         lines = response_text.strip().split('\n')
         feedback = '\n'.join([line for line in lines if not line.strip().startswith('{')])
-        json_line = next((line for line in lines if line.strip().startswith('{')), '{}')
+        # Extract the first line that looks like a JSON object
+        json_line = '{}'
+        for line in lines:
+            if line.strip().startswith('{'):
+                json_line = line.strip()
+                break
         return feedback, json_line
 
     def next_question(self):
