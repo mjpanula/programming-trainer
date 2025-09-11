@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Programming Trainer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to the Programming Trainer</h1>
         {% if user_input %}
             <div class="user-content">
-                <pre>{{ user_input }}</pre>
+                <pre id="mdinput" style="display:none;">{{ user_input }}</pre>
+                <div id="preview"></div>
             </div>
         {% endif %}
         <form method="post">
@@ -20,5 +23,16 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const mdinput = document.getElementById('mdinput');
+        const preview = document.getElementById('preview');
+        if (mdinput) {
+          const rawMarkdown = mdinput.textContent;
+          const html = marked.parse(rawMarkdown);
+          preview.innerHTML = DOMPurify.sanitize(html);
+        }
+      });
+    </script>
 </body>
 </html>
