@@ -18,9 +18,9 @@ This project is a simple Flask web application designed to facilitate learning p
    python -m venv venv
    ```
 4. Activate the virtual environment:
-   - On Windows:
+   - On Windows (PowerShell):
      ```
-     venv\Scripts\activate
+     .\venv\Scripts\Activate.ps1
      ```
    - On macOS/Linux:
      ```
